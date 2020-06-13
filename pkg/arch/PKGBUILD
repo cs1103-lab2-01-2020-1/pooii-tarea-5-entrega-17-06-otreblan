@@ -1,7 +1,7 @@
 # Maintainer: Otreblan <otreblain@gmail.com>
 
 pkgname=observer-git
-pkgver=0.0.0.r0.g2939000
+pkgver=0.0.0.r1.g53788d3
 pkgrel=1
 epoch=
 pkgdesc="Observer"
