@@ -20,8 +20,12 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
+#include <env.hpp>
+
 int main()
 {
+	aru::Env env;
+
 	while(char* line = readline("> "))
 	{
 		if(strlen(line) > 0)
@@ -31,9 +35,9 @@ int main()
 			std::istringstream is(line);
 			std::string s_buf;
 
-			for(int i = 0; std::getline(is, s_buf, ' '); ++i)
+			while(std::getline(is, s_buf, ' '))
 			{
-				std::cout << s_buf << '\n';
+				env.action(s_buf, is);
 			}
 		}
 

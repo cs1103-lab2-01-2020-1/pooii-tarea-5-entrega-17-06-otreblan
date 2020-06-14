@@ -20,6 +20,7 @@
 #include <unordered_map>
 #include <optional>
 #include <memory>
+#include <functional>
 
 #include <user.hpp>
 
@@ -28,6 +29,9 @@ namespace aru
 class Env
 {
 private:
+	const static std::unordered_map<std::string_view,
+		std::function<void(Env&, std::istream&)>> action_map;
+
 	std::unordered_map<std::string, std::shared_ptr<User>> users;
 
 	std::optional<std::reference_wrapper<User>> current_user;
@@ -40,5 +44,8 @@ public:
 
 	/// Print help
 	void help();
+
+	/// Actions
+	bool action(std::string_view str, std::istream& is);
 };
 };
