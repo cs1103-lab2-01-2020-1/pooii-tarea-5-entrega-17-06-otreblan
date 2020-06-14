@@ -52,7 +52,7 @@ y agregarlos en la carpeta imagenes con extension .JPG o PDF (No word, no archiv
 
 ``` bash
 mkdir -p build && cd build
-cmake ..
+CXX=g++-10 cmake ..
 make -j$(nproc)
 
 ./observer
