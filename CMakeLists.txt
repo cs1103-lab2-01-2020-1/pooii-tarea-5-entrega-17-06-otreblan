@@ -17,7 +17,7 @@
 cmake_minimum_required(VERSION 3.13.0)
 
 project(observer
-	VERSION 0.0.0
+	VERSION 0.0.1
 	DESCRIPTION "Observer"
 	HOMEPAGE_URL "https://github.com/cs1103-lab2-01-2020-1/pooii-tarea-5-entrega-17-06-otreblan"
 	LANGUAGES "CXX"

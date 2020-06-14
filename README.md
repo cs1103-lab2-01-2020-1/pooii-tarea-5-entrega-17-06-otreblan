@@ -1,3 +1,7 @@
+[![C/C++ CI](https://github.com/cs1103-lab2-01-2020-1/pooii-tarea-5-entrega-17-06-otreblan/workflows/C/C++%20CI/badge.svg)](https://github.com/cs1103-lab2-01-2020-1/pooii-tarea-5-entrega-17-06-otreblan/actions?query=workflow%3A%22C%2FC%2B%2B+CI%22)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/cs1103-lab2-01-2020-1/pooii-tarea-5-entrega-17-06-otreblan?logo=github)
+![GitHub](https://img.shields.io/github/license/cs1103-lab2-01-2020-1/pooii-tarea-5-entrega-17-06-otreblan?logo=gnu)
+
 # Programación Orientado a Objetos II
 
 Información del Alumno:
