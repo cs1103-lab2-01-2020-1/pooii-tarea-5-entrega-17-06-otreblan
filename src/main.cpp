@@ -33,7 +33,7 @@ int main()
 
 			while(std::getline(is, s_buf, ' '))
 			{
-				//std::cout << s_buf << '\n';
+				std::cout << s_buf << '\n';
 			}
 		}
 
