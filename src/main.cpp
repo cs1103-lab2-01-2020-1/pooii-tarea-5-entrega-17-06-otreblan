@@ -25,6 +25,7 @@
 int main()
 {
 	aru::Env env;
+	auto f1 = env.parking.run();
 
 	while(char* line = readline("> "))
 	{

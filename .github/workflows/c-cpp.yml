@@ -19,6 +19,7 @@ jobs:
         g++-10
         libreadline-dev
         libboost-dev
+        libnotify-dev
 
     - name: configure
       run: CXXFLAGS="-O2 -pipe -fno-plt -Wall -Wextra" cmake

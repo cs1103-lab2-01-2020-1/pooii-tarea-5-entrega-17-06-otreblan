@@ -15,6 +15,9 @@
 // along with observer.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <functional>
+#include <future>
+#include <iostream>
+#include <unistd.h>
 
 #include <parking.hpp>
 
@@ -44,6 +47,18 @@ void aru::Parking::unregister_user(User& user)
 }
 
 
-void aru::Parking::run()
+std::future<void> aru::Parking::run()
 {
+
+	auto _f = [this]
+	{
+		while(true)
+		{
+			// Test notifications every 5 seconds
+			sleep(5);
+			signal(10);
+		}
+	};
+
+	return std::async(_f);
 }

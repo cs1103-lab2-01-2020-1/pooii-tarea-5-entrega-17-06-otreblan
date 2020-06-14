@@ -16,6 +16,8 @@
 
 #pragma once
 
+#include <future>
+
 #include <notifier.hpp>
 
 namespace aru
@@ -32,6 +34,6 @@ public:
 	virtual void register_user(User& user);
 	virtual void unregister_user(User& user);
 
-	virtual void run();
+	std::future<void> run();
 };
 };

@@ -40,9 +40,9 @@ private:
 
 	void login(const std::string& new_user);
 	void logout();
-
-	Parking parking;
 public:
+	Parking parking;
+
 	Env() = default;
 	virtual ~Env() = default;
 

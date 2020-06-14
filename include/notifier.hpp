@@ -30,8 +30,6 @@ protected:
 	virtual void register_user(User&){};
 	virtual void unregister_user(User&){};
 
-	virtual void run(){};
-
 	boost::signals2::signal<void(int)> signal;
 
 	std::unordered_map<std::string, boost::signals2::connection> signal_map;

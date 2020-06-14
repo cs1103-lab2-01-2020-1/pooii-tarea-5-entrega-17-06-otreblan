@@ -16,6 +16,8 @@
 
 #include <iostream>
 
+#include <libnotify/notify.h>
+
 #include <user.hpp>
 #include <notifier.hpp>
 #include <parking.hpp>
@@ -29,7 +31,19 @@ void aru::User::notify(notify_type type, int cuantity)
 	switch (type) {
 		case notify_type::parking:
 		{
-			std::cout << cuantity << '\n';
+			notify_init("observer");
+
+			NotifyNotification* notification = notify_notification_new(
+				"Parking lot",
+				std::to_string(cuantity).c_str(),
+				nullptr
+			);
+
+			notify_notification_show(notification, nullptr);
+
+			g_object_unref(G_OBJECT(notification));
+
+			notify_uninit();
 			break;
 		}
 		case notify_type::tables:

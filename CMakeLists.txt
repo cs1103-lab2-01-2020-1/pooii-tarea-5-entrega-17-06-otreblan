@@ -52,9 +52,11 @@ add_subdirectory(pkg) # Packaging
 pkg_check_modules(shared
 	REQUIRED IMPORTED_TARGET
 		readline
+		libnotify
 )
 
 find_package(Boost REQUIRED)
+find_package(Threads REQUIRED)
 
 ## Header only libraries
 #pkg_check_modules(header_only
@@ -67,6 +69,7 @@ find_package(Boost REQUIRED)
 target_link_libraries(${PROJECT_NAME}
 	PRIVATE
 		PkgConfig::shared
+		Threads::Threads
 
 	INTERFACE
 		Boost::headers
