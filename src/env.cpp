@@ -84,7 +84,7 @@ const std::unordered_map<std::string_view,
 			if(std::getline(is, s_buf, ' '))
 				env.login(s_buf);
 			else
-				return {false, "login <user>\n"};
+				return {false, "login \e[4muser\e[0m\n"};
 
 			std::getline(is, s_buf);
 
@@ -108,7 +108,7 @@ const std::unordered_map<std::string_view,
 		[](Env& env, std::istream& is) -> std::pair<bool, std::string>
 		{
 			if(!env.current_user.has_value())
-				return {false, "login <user>\n"};
+				return {false, "login \e[4muser\e[0m\n"};
 
 			env.parking.register_user(env.current_user.value());
 
