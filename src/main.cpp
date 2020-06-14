@@ -31,7 +31,7 @@ int main()
 			std::istringstream is(line);
 			std::string s_buf;
 
-			while(std::getline(is, s_buf, ' '))
+			for(int i = 0; std::getline(is, s_buf, ' '); ++i)
 			{
 				std::cout << s_buf << '\n';
 			}
