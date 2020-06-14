@@ -33,7 +33,7 @@ enum class notify_type
 class User
 {
 public:
-	void notify(Notifier& notifier, notify_type type);
+	void notify(notify_type type, int cuantity);
 
 	std::string name;
 

@@ -21,11 +21,13 @@
 void aru::Parking::register_user(User& user)
 {
 	signal_map.emplace(user.name,
-		signal.connect(std::bind(
-			&User::notify,
-			user,
-			std::ref(*this),
-			notify_type::parking)
+		signal.connect(
+			std::bind(
+				&User::notify,
+				user,
+				notify_type::parking,
+				std::placeholders::_1
+			)
 		)
 	);
 }

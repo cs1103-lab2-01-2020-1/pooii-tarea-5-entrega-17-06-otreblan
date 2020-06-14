@@ -32,7 +32,7 @@ protected:
 
 	virtual void run(){};
 
-	boost::signals2::signal<void()> signal;
+	boost::signals2::signal<void(int)> signal;
 
 	std::unordered_map<std::string, boost::signals2::connection> signal_map;
 public:

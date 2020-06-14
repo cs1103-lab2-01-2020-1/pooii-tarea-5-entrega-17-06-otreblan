@@ -24,21 +24,12 @@ aru::User::User(std::string_view name):
 	name(name)
 {};
 
-void aru::User::notify(Notifier& notifier, notify_type type)
+void aru::User::notify(notify_type type, int cuantity)
 {
 	switch (type) {
 		case notify_type::parking:
 		{
-			auto& parking = static_cast<Parking&>(notifier);
-
-			int count = 0;
-
-			for(const auto& i:parking.parks)
-			{
-				if(!i)
-					count++;
-			}
-			std::cout << count << '\n';
+			std::cout << cuantity << '\n';
 			break;
 		}
 		case notify_type::tables:
