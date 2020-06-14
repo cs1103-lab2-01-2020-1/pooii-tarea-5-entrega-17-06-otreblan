@@ -37,9 +37,11 @@ int main()
 
 			if(std::getline(is, s_buf, ' '))
 			{
-				auto resu = env.action(s_buf, is);
+				std::pair resu = env.action(s_buf, is);
+
 				if(!resu.first)
 					std::cerr << "\e[1;31mERROR\e[0m: ";
+
 				std::cout << resu.second;
 			}
 		}

@@ -102,5 +102,20 @@ const std::unordered_map<std::string_view,
 
 			return {true, ""};
 		}
+	},
+	{
+		"park-register",
+		[](Env& env, std::istream& is) -> std::pair<bool, std::string>
+		{
+			if(!env.current_user.has_value())
+				return {false, "login <user>\n"};
+
+			env.parking.register_user(env.current_user.value());
+
+			std::string s_buf;
+			std::getline(is, s_buf);
+
+			return {true, ""};
+		}
 	}
 };

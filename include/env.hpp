@@ -23,6 +23,7 @@
 #include <functional>
 
 #include <user.hpp>
+#include <parking.hpp>
 
 namespace aru
 {
@@ -39,6 +40,8 @@ private:
 
 	void login(const std::string& new_user);
 	void logout();
+
+	Parking parking;
 public:
 	Env() = default;
 	virtual ~Env() = default;
