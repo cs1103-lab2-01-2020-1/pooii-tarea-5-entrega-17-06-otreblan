@@ -16,14 +16,17 @@
 
 #pragma once
 
-#include <string_view>
+#include <user.hpp>
 
 namespace aru
 {
 class Notifier
 {
 protected:
+	virtual void register_user(User user) = 0;
+	virtual void unregister_user(User user) = 0;
 
+	virtual void run() = 0;
 public:
 	Notifier() = default;
 	virtual ~Notifier() = default;

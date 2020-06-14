@@ -18,6 +18,5 @@ target_sources(${PROJECT_NAME}
 	PRIVATE
 		main.cpp
 		env.cpp
-		notifier.cpp
 		user.cpp
 )
