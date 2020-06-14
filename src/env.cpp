@@ -14,31 +14,18 @@
 // You should have received a copy of the GNU General Public License
 // along with observer.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <iostream>
-#include <sstream>
+#include <env.hpp>
 
-#include <readline/readline.h>
-#include <readline/history.h>
-
-int main()
+void aru::Env::help()
 {
-	while(char* line = readline("> "))
-	{
-		if(strlen(line) > 0)
-		{
-			add_history(line);
+}
 
-			std::istringstream is(line);
-			std::string s_buf;
+void aru::Env::login(std::string_view new_user)
+{
+	current_user = new_user;
+}
 
-			for(int i = 0; std::getline(is, s_buf, ' '); ++i)
-			{
-				std::cout << s_buf << '\n';
-			}
-		}
-
-		free(line);
-	}
-
-	return 0;
+void aru::Env::logout()
+{
+	current_user.clear();
 }
