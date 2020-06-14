@@ -15,6 +15,7 @@
 // along with observer.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <env.hpp>
+#include <string_view>
 
 void aru::Env::help()
 {
@@ -22,13 +23,16 @@ void aru::Env::help()
 
 void aru::Env::login(std::string_view new_user)
 {
-	current_user = new_user;
+	if(users.find((std::string)new_user) == users.end())
+		return;
 
-	if(users.find(current_user) == users.end())
-		users[current_user] = User();
+	std::shared_ptr<User> user(new User(new_user));
+	users[(std::string)new_user] = user;
+
+	current_user = *user;
 }
 
 void aru::Env::logout()
 {
-	current_user.clear();
+	current_user.reset();
 }

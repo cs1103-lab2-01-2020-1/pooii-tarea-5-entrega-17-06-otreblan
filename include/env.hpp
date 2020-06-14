@@ -19,6 +19,7 @@
 #include <string>
 #include <unordered_map>
 #include <optional>
+#include <memory>
 
 #include <user.hpp>
 
@@ -27,9 +28,9 @@ namespace aru
 class Env
 {
 private:
-	std::unordered_map<std::string, User> users;
+	std::unordered_map<std::string, std::shared_ptr<User>> users;
 
-	std::string current_user;
+	std::optional<std::reference_wrapper<User>> current_user;
 
 	void login(std::string_view new_user);
 	void logout();

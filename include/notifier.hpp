@@ -23,6 +23,7 @@ namespace aru
 class Notifier
 {
 protected:
+
 public:
 	Notifier() = default;
 	virtual ~Notifier() = default;

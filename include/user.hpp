@@ -17,13 +17,16 @@
 #pragma once
 
 #include <string_view>
+#include <string>
 
 namespace aru
 {
 class User
 {
-private:
 public:
+	std::string name;
+
+	User(std::string_view name);
 	User() = default;
 	virtual ~User() = default;
 };
