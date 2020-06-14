@@ -14,21 +14,17 @@
 // You should have received a copy of the GNU General Public License
 // along with observer.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <env.hpp>
+#pragma once
 
-void aru::Env::help()
+#include <string_view>
+
+namespace aru
 {
-}
-
-void aru::Env::login(std::string_view new_user)
+class User
 {
-	current_user = new_user;
-
-	if(users.find(current_user) == users.end())
-		users[current_user] = User();
-}
-
-void aru::Env::logout()
-{
-	current_user.clear();
-}
+private:
+public:
+	User() = default;
+	virtual ~User() = default;
+};
+};

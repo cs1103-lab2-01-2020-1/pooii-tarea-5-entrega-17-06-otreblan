@@ -17,12 +17,18 @@
 #pragma once
 
 #include <string>
+#include <unordered_map>
+#include <optional>
+
+#include <user.hpp>
 
 namespace aru
 {
 class Env
 {
 private:
+	std::unordered_map<std::string, User> users;
+
 	std::string current_user;
 
 	void login(std::string_view new_user);

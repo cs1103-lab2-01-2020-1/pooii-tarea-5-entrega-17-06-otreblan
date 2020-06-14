@@ -14,21 +14,4 @@
 // You should have received a copy of the GNU General Public License
 // along with observer.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <env.hpp>
-
-void aru::Env::help()
-{
-}
-
-void aru::Env::login(std::string_view new_user)
-{
-	current_user = new_user;
-
-	if(users.find(current_user) == users.end())
-		users[current_user] = User();
-}
-
-void aru::Env::logout()
-{
-	current_user.clear();
-}
+#include <user.hpp>
