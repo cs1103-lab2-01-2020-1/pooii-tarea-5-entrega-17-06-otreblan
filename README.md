@@ -4,6 +4,10 @@
 
 # Programación Orientado a Objetos II
 
+<p align="center">
+<img src="https://user-images.githubusercontent.com/39320840/84606061-0b70e000-ae68-11ea-859a-b8adffa0ca29.gif">
+</p>
+
 Información del Alumno:
 -
 
