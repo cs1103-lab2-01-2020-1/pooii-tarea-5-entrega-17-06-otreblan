@@ -14,8 +14,11 @@
 // You should have received a copy of the GNU General Public License
 // along with observer.  If not, see <http://www.gnu.org/licenses/>.
 
+#include <iostream>
+
 #include <user.hpp>
 #include <notifier.hpp>
+#include <parking.hpp>
 
 aru::User::User(std::string_view name):
 	name(name)
@@ -23,4 +26,22 @@ aru::User::User(std::string_view name):
 
 void aru::User::notify(Notifier& notifier, notify_type type)
 {
+	switch (type) {
+		case notify_type::parking:
+		{
+			auto& parking = static_cast<Parking&>(notifier);
+
+			int count = 0;
+
+			for(const auto& i:parking.parks)
+			{
+				if(!i)
+					count++;
+			}
+			std::cout << count << '\n';
+			break;
+		}
+		case notify_type::tables:
+			break;
+	}
 }

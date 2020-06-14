@@ -23,6 +23,9 @@ namespace aru
 class Parking: public Notifier
 {
 public:
+	/// True if a park is occupied.
+	std::vector<bool> parks;
+
 	Parking(){};
 	virtual ~Parking(){};
 
