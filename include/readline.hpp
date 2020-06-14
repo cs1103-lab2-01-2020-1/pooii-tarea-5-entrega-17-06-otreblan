@@ -14,42 +14,17 @@
 // You should have received a copy of the GNU General Public License
 // along with observer.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <iostream>
-#include <sstream>
+#pragma once
 
-#include <readline.hpp>
-#include <env.hpp>
+#include <array>
+#include <string_view>
 
-int main()
-{
-	aru::Env env;
+#include <readline/readline.h>
+#include <readline/history.h>
 
-	std::pair f = env.run();
+extern const char* commands[];
 
-	initialize_readline();
+void initialize_readline();
 
-	while(char* line = readline("> "))
-	{
-		if(strlen(line) > 0)
-		{
-			add_history(line);
-
-			std::istringstream is(line);
-			std::string s_buf;
-
-			if(std::getline(is, s_buf, ' '))
-			{
-				std::pair resu = env.action(s_buf, is);
-
-				if(!resu.first)
-					std::cerr << "\e[1;31mERROR\e[0m: ";
-
-				std::cout << resu.second;
-			}
-		}
-
-		free(line);
-	}
-
-	exit(EXIT_SUCCESS);
-}
+char** observer_completion(const char* text, int start, int);
+char* command_generator(const char* text, int state);
