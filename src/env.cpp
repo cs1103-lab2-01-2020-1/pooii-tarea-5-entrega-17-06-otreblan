@@ -32,19 +32,25 @@ bool aru::Env::action(std::string_view str, std::istream& is)
 	if(it == action_map.end())
 		return false;
 
-	it->second(*this, is);
-	return true;
+	return it->second(*this, is);
 }
 
-void aru::Env::login(std::string_view new_user)
+void aru::Env::login(const std::string& new_user)
 {
-	if(users.find((std::string)new_user) == users.end())
-		return;
+	auto it = users.find(new_user);
 
-	std::shared_ptr<User> user(new User(new_user));
-	users[(std::string)new_user] = user;
+	// User not found
+	if(it == users.end())
+	{
+		std::shared_ptr<User> user(new User(new_user));
+		users[new_user] = user;
 
-	current_user = *user;
+		current_user = *user;
+	}
+	else // User found
+	{
+		current_user = *it->second;
+	}
 }
 
 void aru::Env::logout()
@@ -53,7 +59,7 @@ void aru::Env::logout()
 }
 
 const std::unordered_map<std::string_view,
-	std::function<void(aru::Env&, std::istream&)>> aru::Env::action_map =
+	std::function<bool(aru::Env&, std::istream&)>> aru::Env::action_map =
 {
 	{
 		"help",
@@ -62,7 +68,25 @@ const std::unordered_map<std::string_view,
 			env.help();
 
 			std::string s_buf;
-			while(std::getline(is, s_buf, ' ')){}
+			std::getline(is, s_buf);
+
+			return true;
+		}
+	},
+	{
+		"login",
+		[](Env& env, std::istream& is)
+		{
+			std::string s_buf;
+
+			if(std::getline(is, s_buf, ' '))
+				env.login(s_buf);
+			else
+				return false;
+
+			std::getline(is, s_buf);
+
+			return true;
 		}
 	}
 };

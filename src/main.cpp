@@ -37,7 +37,11 @@ int main()
 
 			while(std::getline(is, s_buf, ' '))
 			{
-				env.action(s_buf, is);
+				if(!env.action(s_buf, is))
+				{
+					std::cerr << "No\n";
+					break;
+				}
 			}
 		}
 

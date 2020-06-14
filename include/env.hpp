@@ -30,13 +30,13 @@ class Env
 {
 private:
 	const static std::unordered_map<std::string_view,
-		std::function<void(Env&, std::istream&)>> action_map;
+		std::function<bool(Env&, std::istream&)>> action_map;
 
 	std::unordered_map<std::string, std::shared_ptr<User>> users;
 
 	std::optional<std::reference_wrapper<User>> current_user;
 
-	void login(std::string_view new_user);
+	void login(const std::string& new_user);
 	void logout();
 public:
 	Env() = default;
