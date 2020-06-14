@@ -76,12 +76,9 @@ const std::unordered_map<std::string_view,
 {
 	{
 		"help",
-		[](Env& env, std::istream& is) -> std::pair<bool, std::string>
+		[](Env& env, std::istream&) -> std::pair<bool, std::string>
 		{
 			env.help();
-
-			std::string s_buf;
-			std::getline(is, s_buf);
 
 			return {true, ""};
 		}
@@ -97,79 +94,62 @@ const std::unordered_map<std::string_view,
 			else
 				return {false, "login \e[4muser\e[0m\n"};
 
-			std::getline(is, s_buf);
-
 			return {true, ""};
 		}
 	},
 	{
 		"logout",
-		[](Env& env, std::istream& is) -> std::pair<bool, std::string>
+		[](Env& env, std::istream&) -> std::pair<bool, std::string>
 		{
 			env.logout();
-
-			std::string s_buf;
-			std::getline(is, s_buf);
 
 			return {true, ""};
 		}
 	},
 	{
 		"park-register",
-		[](Env& env, std::istream& is) -> std::pair<bool, std::string>
+		[](Env& env, std::istream&) -> std::pair<bool, std::string>
 		{
 			if(!env.current_user.has_value())
 				return {false, "login \e[4muser\e[0m\n"};
 
 			env.parking.register_user(env.current_user.value());
 
-			std::string s_buf;
-			std::getline(is, s_buf);
-
 			return {true, ""};
 		}
 	},
 	{
 		"park-unregister",
-		[](Env& env, std::istream& is) -> std::pair<bool, std::string>
+		[](Env& env, std::istream&) -> std::pair<bool, std::string>
 		{
 			if(!env.current_user.has_value())
 				return {false, "login \e[4muser\e[0m\n"};
 
 			env.parking.unregister_user(env.current_user.value());
 
-			std::string s_buf;
-			std::getline(is, s_buf);
-
 			return {true, ""};
 		}
 	},
 	{
 		"table-register",
-		[](Env& env, std::istream& is) -> std::pair<bool, std::string>
+		[](Env& env, std::istream&) -> std::pair<bool, std::string>
 		{
 			if(!env.current_user.has_value())
 				return {false, "login \e[4muser\e[0m\n"};
 
 			env.tables.register_user(env.current_user.value());
 
-			std::string s_buf;
-			std::getline(is, s_buf);
-
 			return {true, ""};
 		}
 	},
 	{
 		"table-unregister",
-		[](Env& env, std::istream& is) -> std::pair<bool, std::string>
+		[](Env& env, std::istream&) -> std::pair<bool, std::string>
 		{
 			if(!env.current_user.has_value())
 				return {false, "login \e[4muser\e[0m\n"};
 
 			env.tables.unregister_user(env.current_user.value());
-
-			std::string s_buf;
-			std::getline(is, s_buf);
 
 			return {true, ""};
 		}
