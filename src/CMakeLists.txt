@@ -20,4 +20,5 @@ target_sources(${PROJECT_NAME}
 		env.cpp
 		user.cpp
 		parking.cpp
+		tables.cpp
 )

@@ -14,42 +14,25 @@
 // You should have received a copy of the GNU General Public License
 // along with observer.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <iostream>
-#include <sstream>
+#pragma once
 
-#include <readline/readline.h>
-#include <readline/history.h>
+#include <future>
 
-#include <env.hpp>
+#include <notifier.hpp>
 
-int main()
+namespace aru
 {
-	aru::Env env;
+class Tables: public Notifier
+{
+public:
+	int free_spaces = 1000000;
 
-	std::pair f = env.run();
+	Tables(){};
+	virtual ~Tables(){};
 
-	while(char* line = readline("> "))
-	{
-		if(strlen(line) > 0)
-		{
-			add_history(line);
+	virtual void register_user(User& user);
+	virtual void unregister_user(User& user);
 
-			std::istringstream is(line);
-			std::string s_buf;
-
-			if(std::getline(is, s_buf, ' '))
-			{
-				std::pair resu = env.action(s_buf, is);
-
-				if(!resu.first)
-					std::cerr << "\e[1;31mERROR\e[0m: ";
-
-				std::cout << resu.second;
-			}
-		}
-
-		free(line);
-	}
-
-	return 0;
-}
+	std::future<void> run();
+};
+};

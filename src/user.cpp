@@ -38,6 +38,7 @@ void aru::User::notify(notify_type type, int cuantity)
 			title = "Parking lot";
 			break;
 		case notify_type::tables:
+			title = "Tables";
 			break;
 	}
 

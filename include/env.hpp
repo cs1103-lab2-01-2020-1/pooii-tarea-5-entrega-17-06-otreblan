@@ -21,9 +21,11 @@
 #include <optional>
 #include <memory>
 #include <functional>
+#include <future>
 
 #include <user.hpp>
 #include <parking.hpp>
+#include <tables.hpp>
 
 namespace aru
 {
@@ -40,8 +42,10 @@ private:
 
 	void login(const std::string& new_user);
 	void logout();
-public:
+
 	Parking parking;
+	Tables tables;
+public:
 
 	Env() = default;
 	virtual ~Env() = default;
@@ -51,5 +55,7 @@ public:
 
 	/// Actions
 	std::pair<bool, std::string> action(std::string_view str, std::istream& is);
+
+	std::pair<std::future<void>, std::future<void>> run();
 };
 };

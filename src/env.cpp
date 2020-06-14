@@ -134,3 +134,8 @@ const std::unordered_map<std::string_view,
 		}
 	}
 };
+
+std::pair<std::future<void>, std::future<void>> aru::Env::run()
+{
+	return {parking.run(), tables.run()};
+};

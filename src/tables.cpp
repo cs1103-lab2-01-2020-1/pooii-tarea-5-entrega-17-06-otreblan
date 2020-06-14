@@ -14,42 +14,51 @@
 // You should have received a copy of the GNU General Public License
 // along with observer.  If not, see <http://www.gnu.org/licenses/>.
 
+#include <functional>
+#include <future>
 #include <iostream>
-#include <sstream>
+#include <unistd.h>
 
-#include <readline/readline.h>
-#include <readline/history.h>
+#include <tables.hpp>
 
-#include <env.hpp>
-
-int main()
+void aru::Tables::register_user(User& user)
 {
-	aru::Env env;
+	signal_map.emplace(user.name,
+		signal.connect(
+			std::bind(
+				&User::notify,
+				user,
+				notify_type::tables,
+				std::placeholders::_1
+			)
+		)
+	);
+}
 
-	std::pair f = env.run();
+void aru::Tables::unregister_user(User& user)
+{
+	auto it = signal_map.find(user.name);
 
-	while(char* line = readline("> "))
+	if(it != signal_map.end())
 	{
-		if(strlen(line) > 0)
-		{
-			add_history(line);
-
-			std::istringstream is(line);
-			std::string s_buf;
-
-			if(std::getline(is, s_buf, ' '))
-			{
-				std::pair resu = env.action(s_buf, is);
-
-				if(!resu.first)
-					std::cerr << "\e[1;31mERROR\e[0m: ";
-
-				std::cout << resu.second;
-			}
-		}
-
-		free(line);
+		it->second.disconnect();
+		signal_map.erase(it);
 	}
+}
 
-	return 0;
+
+std::future<void> aru::Tables::run()
+{
+
+	auto _f = [this]
+	{
+		while(true)
+		{
+			signal(free_spaces--);
+
+			sleep(6);
+		}
+	};
+
+	return std::async(_f);
 }
