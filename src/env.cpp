@@ -88,5 +88,17 @@ const std::unordered_map<std::string_view,
 
 			return true;
 		}
+	},
+	{
+		"logout",
+		[](Env& env, std::istream& is)
+		{
+			env.logout();
+
+			std::string s_buf;
+			std::getline(is, s_buf);
+
+			return true;
+		}
 	}
 };
