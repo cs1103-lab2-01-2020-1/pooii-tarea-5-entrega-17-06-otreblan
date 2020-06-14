@@ -51,5 +51,5 @@ int main()
 		free(line);
 	}
 
-	return 0;
+	exit(EXIT_SUCCESS);
 }

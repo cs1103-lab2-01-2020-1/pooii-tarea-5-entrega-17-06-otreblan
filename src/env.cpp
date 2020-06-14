@@ -132,6 +132,36 @@ const std::unordered_map<std::string_view,
 
 			return {true, ""};
 		}
+	},
+	{
+		"table-register",
+		[](Env& env, std::istream& is) -> std::pair<bool, std::string>
+		{
+			if(!env.current_user.has_value())
+				return {false, "login \e[4muser\e[0m\n"};
+
+			env.tables.register_user(env.current_user.value());
+
+			std::string s_buf;
+			std::getline(is, s_buf);
+
+			return {true, ""};
+		}
+	},
+	{
+		"table-unregister",
+		[](Env& env, std::istream& is) -> std::pair<bool, std::string>
+		{
+			if(!env.current_user.has_value())
+				return {false, "login \e[4muser\e[0m\n"};
+
+			env.tables.unregister_user(env.current_user.value());
+
+			std::string s_buf;
+			std::getline(is, s_buf);
+
+			return {true, ""};
+		}
 	}
 };
 
