@@ -25,12 +25,13 @@ void aru::Env::help()
 	std::cout << "TODO: help\n";
 }
 
-bool aru::Env::action(std::string_view str, std::istream& is)
+std::pair<bool, std::string>
+	aru::Env::action(std::string_view str, std::istream& is)
 {
 	auto it = action_map.find(str);
 
 	if(it == action_map.end())
-		return false;
+		return {false, "Action not found\n"};
 
 	return it->second(*this, is);
 }
@@ -59,46 +60,47 @@ void aru::Env::logout()
 }
 
 const std::unordered_map<std::string_view,
-	std::function<bool(aru::Env&, std::istream&)>> aru::Env::action_map =
+	std::function<std::pair<bool, std::string>(aru::Env&, std::istream&)>>
+		aru::Env::action_map =
 {
 	{
 		"help",
-		[](Env& env, std::istream& is)
+		[](Env& env, std::istream& is) -> std::pair<bool, std::string>
 		{
 			env.help();
 
 			std::string s_buf;
 			std::getline(is, s_buf);
 
-			return true;
+			return {true, ""};
 		}
 	},
 	{
 		"login",
-		[](Env& env, std::istream& is)
+		[](Env& env, std::istream& is) -> std::pair<bool, std::string>
 		{
 			std::string s_buf;
 
 			if(std::getline(is, s_buf, ' '))
 				env.login(s_buf);
 			else
-				return false;
+				return {false, "login [user]\n"};
 
 			std::getline(is, s_buf);
 
-			return true;
+			return {true, ""};
 		}
 	},
 	{
 		"logout",
-		[](Env& env, std::istream& is)
+		[](Env& env, std::istream& is) -> std::pair<bool, std::string>
 		{
 			env.logout();
 
 			std::string s_buf;
 			std::getline(is, s_buf);
 
-			return true;
+			return {true, ""};
 		}
 	}
 };

@@ -30,7 +30,8 @@ class Env
 {
 private:
 	const static std::unordered_map<std::string_view,
-		std::function<bool(Env&, std::istream&)>> action_map;
+		std::function<std::pair<bool, std::string>(Env&, std::istream&)>>
+		action_map;
 
 	std::unordered_map<std::string, std::shared_ptr<User>> users;
 
@@ -46,6 +47,6 @@ public:
 	void help();
 
 	/// Actions
-	bool action(std::string_view str, std::istream& is);
+	std::pair<bool, std::string> action(std::string_view str, std::istream& is);
 };
 };

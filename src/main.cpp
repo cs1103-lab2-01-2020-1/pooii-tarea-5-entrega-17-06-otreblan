@@ -35,13 +35,10 @@ int main()
 			std::istringstream is(line);
 			std::string s_buf;
 
-			while(std::getline(is, s_buf, ' '))
+			if(std::getline(is, s_buf, ' '))
 			{
-				if(!env.action(s_buf, is))
-				{
-					std::cerr << "No\n";
-					break;
-				}
+				auto resu = env.action(s_buf, is);
+				std::cout << resu.second;
 			}
 		}
 
