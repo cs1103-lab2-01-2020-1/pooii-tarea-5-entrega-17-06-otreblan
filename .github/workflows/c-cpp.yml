@@ -18,6 +18,7 @@ jobs:
       run: sudo apt-get install
         g++-10
         libreadline-dev
+        libboost-dev
 
     - name: configure
       run: CXXFLAGS="-O2 -pipe -fno-plt -Wall -Wextra" cmake

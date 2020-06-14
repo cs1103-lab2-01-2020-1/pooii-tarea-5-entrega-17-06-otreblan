@@ -16,22 +16,19 @@
 
 #pragma once
 
-#include <boost/signals2.hpp>
-
-#include <user.hpp>
+#include <notifier.hpp>
 
 namespace aru
 {
-class Notifier
+class Parking: public Notifier
 {
-protected:
-	virtual void register_user(User& user) = 0;
-	virtual void unregister_user(User& user) = 0;
-
-	virtual void run() = 0;
-
 public:
-	Notifier() = default;
-	virtual ~Notifier() = default;
+	Parking() = default;
+	virtual ~Parking() = default;
+
+	virtual void register_user(User& user);
+	virtual void unregister_user(User& user);
+
+	virtual void run();
 };
 };

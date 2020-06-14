@@ -14,24 +14,18 @@
 // You should have received a copy of the GNU General Public License
 // along with observer.  If not, see <http://www.gnu.org/licenses/>.
 
-#pragma once
 
-#include <boost/signals2.hpp>
+#include <parking.hpp>
 
-#include <user.hpp>
-
-namespace aru
+void aru::Parking::register_user(User& user)
 {
-class Notifier
+}
+
+void aru::Parking::unregister_user(User& user)
 {
-protected:
-	virtual void register_user(User& user) = 0;
-	virtual void unregister_user(User& user) = 0;
+}
 
-	virtual void run() = 0;
 
-public:
-	Notifier() = default;
-	virtual ~Notifier() = default;
-};
-};
+void aru::Parking::run()
+{
+}

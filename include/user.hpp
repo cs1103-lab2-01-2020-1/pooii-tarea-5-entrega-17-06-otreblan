@@ -21,8 +21,21 @@
 
 namespace aru
 {
+
+class Notifier;
+
 class User
 {
+private:
+	enum class notify_type
+	{
+		parking,
+		tables
+	};
+
+	void notify(Notifier& notifier, notify_type type);
+	friend class Notifier;
+
 public:
 	std::string name;
 

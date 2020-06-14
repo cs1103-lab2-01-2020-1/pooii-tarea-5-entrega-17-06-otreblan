@@ -54,6 +54,8 @@ pkg_check_modules(shared
 		readline
 )
 
+find_package(Boost REQUIRED)
+
 ## Header only libraries
 #pkg_check_modules(header_only
 #	REQUIRED IMPORTED_TARGET
@@ -66,7 +68,8 @@ target_link_libraries(${PROJECT_NAME}
 	PRIVATE
 		PkgConfig::shared
 
-#	INTERFACE
+	INTERFACE
+		Boost::headers
 #		PkgConfig::header_only
 )
 

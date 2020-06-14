@@ -19,3 +19,7 @@
 aru::User::User(std::string_view name):
 	name(name)
 {};
+
+void aru::User::notify(Notifier& notifier, notify_type type)
+{
+}
