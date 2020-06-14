@@ -84,7 +84,7 @@ const std::unordered_map<std::string_view,
 			if(std::getline(is, s_buf, ' '))
 				env.login(s_buf);
 			else
-				return {false, "login [user]\n"};
+				return {false, "login <user>\n"};
 
 			std::getline(is, s_buf);
 
