@@ -22,7 +22,18 @@
 
 void aru::Env::help()
 {
-	std::cout << "TODO: help\n";
+	std::cout <<
+		"help              Print help\n"
+		"\n"
+		"login <user>      Login as user\n"
+		"logout            Logout current user\n"
+		"\n"
+		"park-register     Register current user to the parking lot\n"
+		"park-unregister   Unregister current user to the parking lot\n"
+		"\n"
+		"table-register    Register current user to the tables\n"
+		"table-unregister  Unregister current user to the tables\n"
+	;
 }
 
 std::pair<bool, std::string>
