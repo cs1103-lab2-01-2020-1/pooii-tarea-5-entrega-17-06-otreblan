@@ -16,6 +16,8 @@
 
 #pragma once
 
+#include <unordered_map>
+
 #include <boost/signals2.hpp>
 
 #include <user.hpp>
@@ -25,13 +27,16 @@ namespace aru
 class Notifier
 {
 protected:
-	virtual void register_user(User& user) = 0;
-	virtual void unregister_user(User& user) = 0;
+	virtual void register_user(User&){};
+	virtual void unregister_user(User&){};
 
-	virtual void run() = 0;
+	virtual void run(){};
 
+	boost::signals2::signal<void()> signal;
+
+	std::unordered_map<std::string, boost::signals2::connection> signal_map;
 public:
-	Notifier() = default;
-	virtual ~Notifier() = default;
+	Notifier(){};
+	virtual ~Notifier(){};
 };
 };

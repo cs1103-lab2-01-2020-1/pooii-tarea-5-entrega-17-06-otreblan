@@ -15,6 +15,7 @@
 // along with observer.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <user.hpp>
+#include <notifier.hpp>
 
 aru::User::User(std::string_view name):
 	name(name)

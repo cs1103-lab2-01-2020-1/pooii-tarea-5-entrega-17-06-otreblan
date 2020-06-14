@@ -24,23 +24,21 @@ namespace aru
 
 class Notifier;
 
+enum class notify_type
+{
+	parking,
+	tables
+};
+
 class User
 {
-private:
-	enum class notify_type
-	{
-		parking,
-		tables
-	};
-
-	void notify(Notifier& notifier, notify_type type);
-	friend class Notifier;
-
 public:
+	void notify(Notifier& notifier, notify_type type);
+
 	std::string name;
 
 	User(std::string_view name);
-	User() = default;
-	virtual ~User() = default;
+	User(){};
+	virtual ~User(){};
 };
 };

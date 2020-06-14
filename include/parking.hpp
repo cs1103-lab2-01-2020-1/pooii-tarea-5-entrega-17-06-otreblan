@@ -23,8 +23,8 @@ namespace aru
 class Parking: public Notifier
 {
 public:
-	Parking() = default;
-	virtual ~Parking() = default;
+	Parking(){};
+	virtual ~Parking(){};
 
 	virtual void register_user(User& user);
 	virtual void unregister_user(User& user);

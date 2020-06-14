@@ -14,15 +14,31 @@
 // You should have received a copy of the GNU General Public License
 // along with observer.  If not, see <http://www.gnu.org/licenses/>.
 
+#include <functional>
 
 #include <parking.hpp>
 
 void aru::Parking::register_user(User& user)
 {
+	signal_map.emplace(user.name,
+		signal.connect(std::bind(
+			&User::notify,
+			user,
+			std::ref(*this),
+			notify_type::parking)
+		)
+	);
 }
 
 void aru::Parking::unregister_user(User& user)
 {
+	auto it = signal_map.find(user.name);
+
+	if(it != signal_map.end())
+	{
+		it->second.disconnect();
+		signal_map.erase(it);
+	}
 }
 
 
