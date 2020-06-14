@@ -29,13 +29,16 @@
 
 namespace aru
 {
+/// A class to save things
 class Env
 {
 private:
+	/// The key is the name and the value is a function
 	const static std::unordered_map<std::string_view,
 		std::function<std::pair<bool, std::string>(Env&, std::istream&)>>
 		action_map;
 
+	/// List of users
 	std::unordered_map<std::string, std::shared_ptr<User>> users;
 
 	std::optional<std::reference_wrapper<User>> current_user;

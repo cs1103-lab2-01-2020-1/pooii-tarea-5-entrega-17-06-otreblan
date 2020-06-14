@@ -36,3 +36,39 @@ Requerimientos:
 y agregarlos en la carpeta imagenes con extension .JPG o PDF (No word, no archivo de texto)
 
 - La implementación debe estar dentro de la carpeta `src`
+
+## Build
+
+### Ubuntu >= 20.04
+
+#### Dependencias
+
+- `g++-10`
+- `libreadline-dev`
+- `libboost-dev`
+- `libnotify-dev`
+
+#### Build
+
+``` bash
+mkdir -p build && cd build
+cmake ..
+make -j$(nproc)
+
+./observer
+```
+
+### Arch Linux
+
+#### Build
+
+``` bash
+cd pkg/arch
+makepkg -si
+
+observer
+```
+
+## Paquetes
+
+Hay paquetes para Ubuntu en cada [release](https://github.com/cs1103-lab2-01-2020-1/pooii-tarea-5-entrega-17-06-otreblan/releases/latest).
