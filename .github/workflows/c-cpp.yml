@@ -15,7 +15,7 @@ jobs:
     - uses: ammaraskar/gcc-problem-matcher@master
 
     - name: deps
-      run: sudo apt install g++-10
+      run: sudo apt install g++-10 readline-dev
 
     - name: configure
       run: CXXFLAGS="-O2 -pipe -fno-plt -Wall -Wextra" cmake
