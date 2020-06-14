@@ -28,25 +28,30 @@ aru::User::User(std::string_view name):
 
 void aru::User::notify(notify_type type, int cuantity)
 {
+	using namespace std::literals;
+
+	std::string cuantity_str = std::to_string(cuantity);
+	std::string title;
+
 	switch (type) {
 		case notify_type::parking:
-		{
-			notify_init("observer");
-
-			NotifyNotification* notification = notify_notification_new(
-				"Parking lot",
-				std::to_string(cuantity).c_str(),
-				nullptr
-			);
-
-			notify_notification_show(notification, nullptr);
-
-			g_object_unref(G_OBJECT(notification));
-
-			notify_uninit();
+			title = "Parking lot";
 			break;
-		}
 		case notify_type::tables:
 			break;
 	}
+
+	notify_init("observer");
+
+	NotifyNotification* notification = notify_notification_new(
+		title.c_str(),
+		(cuantity_str + " free space"s + (cuantity == 1? ""s: "s"s)).c_str(),
+		nullptr
+	);
+
+	notify_notification_show(notification, nullptr);
+
+	g_object_unref(G_OBJECT(notification));
+
+	notify_uninit();
 }

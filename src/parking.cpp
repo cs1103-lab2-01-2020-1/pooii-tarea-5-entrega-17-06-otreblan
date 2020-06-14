@@ -54,9 +54,9 @@ std::future<void> aru::Parking::run()
 	{
 		while(true)
 		{
-			// Test notifications every 5 seconds
+			signal(free_spaces--);
+
 			sleep(5);
-			signal(10);
 		}
 	};
 
